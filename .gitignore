@@ -1,0 +1,36 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/frontend/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+/.idea
+/.ipynb_checkpoints
+/.venv
+/dataset
+/edge_images
+/Model_Test_Data
+/pre_process_data
+/pre_process_data_gray
+/test_data
+
+/edge_classifier_improved.h5
+/X_processed.npy

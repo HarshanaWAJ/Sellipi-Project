@@ -1,0 +1,1 @@
+pip install flask tensorflow pillow numpy opencv-python matplotlib flask-cors
