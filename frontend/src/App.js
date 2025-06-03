@@ -35,6 +35,8 @@ function App() {
       });
 
       const data = await response.json();
+      console.log(data);
+      
 
       if (response.ok) {
         setPrediction(data);
@@ -93,9 +95,21 @@ function App() {
               {prediction.meaning && (
                 <div className="mt-3">
                   <h5 className="text-center">Meaning</h5>
-                  <p className="text-muted text-center" style={{ whiteSpace: 'pre-line' }}>
+                  <div
+                    className="text-muted mx-auto"
+                    style={{
+                      maxWidth: '800px',
+                      whiteSpace: 'pre-line',
+                      textAlign: 'justify',
+                      lineHeight: '1.6',
+                      backgroundColor: '#f8f9fa',
+                      padding: '15px',
+                      borderRadius: '5px',
+                      border: '1px solid #dee2e6'
+                    }}
+                  >
                     {prediction.meaning}
-                  </p>
+                  </div>
                 </div>
               )}
 
