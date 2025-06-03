@@ -19,6 +19,17 @@ class_names = sorted(os.listdir(root_dataset_dir))
 class_map = {idx: name for idx, name in enumerate(class_names)}
 IMG_SIZE = (244, 244)
 
+# === Load Class Meanings ===
+meanings_dir = 'meanings'
+class_meanings = {}
+for class_name in class_names:
+    meaning_file_path = os.path.join(meanings_dir, f"{class_name}.txt")
+    if os.path.exists(meaning_file_path):
+        with open(meaning_file_path, 'r', encoding='utf-8') as f:
+            class_meanings[class_name] = f.read().strip()
+    else:
+        class_meanings[class_name] = "No meaning available."
+
 # === Image Preprocessing Functions ===
 def to_grayscale(img):
     return cv2.cvtColor((img * 255).astype(np.uint8), cv2.COLOR_RGB2GRAY)
@@ -91,6 +102,7 @@ def predict():
         predicted_class_index = int(np.argmax(prediction))
         predicted_class = class_map[predicted_class_index]
         confidence = float(np.max(prediction))
+        class_meaning = class_meanings.get(predicted_class, "No meaning available.")
 
         # Convert preprocessed image to base64
         processed_np_uint8 = (processed_np * 255).astype(np.uint8)
@@ -102,6 +114,7 @@ def predict():
         return jsonify({
             'predicted_class': predicted_class,
             'confidence': confidence,
+            'meaning': class_meaning,
             'preprocessed_image_base64': processed_base64
         })
 

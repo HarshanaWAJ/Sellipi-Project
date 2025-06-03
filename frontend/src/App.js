@@ -90,8 +90,17 @@ function App() {
                 <strong>Confidence:</strong> {(prediction.confidence * 100).toFixed(2)}%
               </p>
 
+              {prediction.meaning && (
+                <div className="mt-3">
+                  <h5 className="text-center">Meaning</h5>
+                  <p className="text-muted text-center" style={{ whiteSpace: 'pre-line' }}>
+                    {prediction.meaning}
+                  </p>
+                </div>
+              )}
+
               {prediction.preprocessed_image_base64 && (
-                <div className="text-center">
+                <div className="text-center mt-4">
                   <h5>Preprocessed Image</h5>
                   <img
                     src={`data:image/jpeg;base64,${prediction.preprocessed_image_base64}`}
